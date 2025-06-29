@@ -1,7 +1,7 @@
 import React from "react";
 import linkedin from "../assets/linkedin-1.png";
 import facebook from "../assets/facebook-1.png";
-import x from "../assets/x-1.png";
+import x from "../assets/X-1.png";
 const FooterContent = [
   {
     title: "Home",
