@@ -2,6 +2,7 @@
 import { useQueries } from "@tanstack/react-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const PopularByCategory = ({
   visibleGenres = [],
@@ -31,25 +32,33 @@ const PopularByCategory = ({
         const movies = movieQueries[index]?.data;
 
         return (
-          <div
-            key={genre.id}
-            className="flex flex-col p-6 text-white border shadow-md gap-7 border-black-12 bg-black-10 rounded-xl"
+          <Link
+            to={`/movie/genre/${genre.id}`}
+            state={{ genreName: genre.name }}
           >
-            <div className="grid grid-cols-2 gap-2">
-              {movies?.map((movie) => (
-                <img
-                  key={movie.id}
-                  src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                  alt={movie.title}
-                  className="object-cover rounded max-w-34 "
+            <div
+              key={genre.id}
+              className="flex flex-col p-6 text-white border shadow-md gap-7 border-black-12 bg-black-10 rounded-xl"
+            >
+              <div className="grid grid-cols-2 gap-2">
+                {movies?.map((movie) => (
+                  <img
+                    key={movie.id}
+                    src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                    alt={movie.title}
+                    className="object-cover rounded max-w-34 "
+                  />
+                ))}
+              </div>
+              <div className="flex items-center justify-between">
+                <h4 className="text-lg font-semibold">{genre.name}</h4>
+                <FontAwesomeIcon
+                  icon={faArrowRight}
+                  className="cursor-pointer"
                 />
-              ))}
+              </div>
             </div>
-            <div className="flex items-center justify-between">
-              <h4 className="text-lg font-semibold">{genre.name}</h4>
-              <FontAwesomeIcon icon={faArrowRight} className="cursor-pointer" />
-            </div>
-          </div>
+          </Link>
         );
       })}
     </div>

@@ -6,6 +6,7 @@ import MovieTvShows from "./Pages/MovieTvShows";
 import Support from "./Pages/Support";
 import Subscriptions from "./Pages/Subscriptions";
 import MovieDetails from "./Pages/MovieDetails";
+import GenreLists from "./Components/GenreLists";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             path="/movie/:id"
             element={<MovieDetails mediaType="movie" />}
           />
+          <Route path="/genre/:mediaType/:genreId" element={<GenreLists />} />
           <Route path="/tv/:id" element={<MovieDetails mediaType="tv" />} />
           <Route path="/support" element={<Support />} />
           <Route path="/subscriptions" element={<Subscriptions />} />

@@ -4,6 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Card = ({ movie, mediaType }) => {
+  // Removed genreId as it's not directly used in Card's link logic
   console.log(
     "Rendering Card:",
     movie.title || movie.name,
@@ -18,8 +19,8 @@ const Card = ({ movie, mediaType }) => {
       >
         <img
           key={movie.id}
-          src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-          alt={movie.title}
+          src={`https://image.tmdb.org/t/p/w200${movie?.poster_path}`}
+          alt={movie.title || movie.name} // Use movie.name for TV shows if title is missing
           className="w-full"
         />
         <div className="flex justify-between">

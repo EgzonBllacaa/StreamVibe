@@ -7,10 +7,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 createRoot(document.getElementById("root")).render(
   // <StrictMode>
-  <div className=" bg-black-08 text-absolute-white">
-    <QueryClientProvider client={queryClient}>
+  <QueryClientProvider client={queryClient}>
+    <div className="overflow-x-hidden  bg-black-08 text-absolute-white">
       <App />
-    </QueryClientProvider>
-  </div>
+    </div>
+  </QueryClientProvider>
   // </StrictMode>
 );

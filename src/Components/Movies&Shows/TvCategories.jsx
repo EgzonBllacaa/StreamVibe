@@ -1,6 +1,6 @@
 import React from "react";
 import ButtonCta from "../ButtonCta";
-import PopularTVShowsList from "./PopularTvhShowsList";
+import PopularTVShowsList from "./PopularTvShowsList";
 import OurTVGenresList from "./OurTvGenresList";
 import TrendingList from "./TrendingList";
 import NewReleasesList from "./NewReleasesList";

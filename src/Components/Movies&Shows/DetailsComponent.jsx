@@ -40,7 +40,7 @@ const DetailsComponent = ({ mediaType }) => {
       <div className="flex flex-col items-center">
         <img
           src={`https://image.tmdb.org/t/p/w500${
-            data.poster_path || data.belongs_to_collection.poster_path
+            data?.poster_path || data.belongs_to_collection?.poster_path
           }`}
           alt={data.title || data.name}
           className="mb-6 rounded-4xl w-fit"

@@ -10,8 +10,10 @@ const NavButton = ({ to, label }) => {
   return (
     <button
       onClick={() => navigate(to)}
-      className={`cursor-pointer px-6 py-3.5 ${
-        isActive ? "bg-black-10 text-absolute-white  rounded" : ""
+      className={`cursor-pointer md:text-sm hover:bg-black-08 px-6 py-3.5 ${
+        isActive
+          ? "bg-black-10 hover:bg-black-10 text-absolute-white  rounded"
+          : ""
       } `}
     >
       {label}
