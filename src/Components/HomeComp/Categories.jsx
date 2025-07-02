@@ -2,6 +2,7 @@ import { useQueries } from "@tanstack/react-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import Spinner from "../Spinner";
 
 const fetchMediaByGenre = async (genreId, apiKey, mediaType) => {
   const res = await fetch(
@@ -31,7 +32,7 @@ const Categories = ({ visibleGenres = [], mediaType = "movie" }) => {
   const isLoading = mediaQueries.some((q) => q.isLoading);
   const isError = mediaQueries.some((q) => q.isError);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner />;
   if (isError) return <p>Something went wrong.</p>;
 
   return (

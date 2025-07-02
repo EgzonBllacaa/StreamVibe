@@ -2,18 +2,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faBell, faClose } from "@fortawesome/free-solid-svg-icons";
 import streamVibeLogo from "../assets/streamvibelogo.png";
 import NavButton from "./NavButton";
-import { useRef, useState, useMemo } from "react"; // Import useMemo
+import React, { useRef, useState, useMemo } from "react"; // Import useMemo
 import { Link } from "react-router-dom";
 import UseSearchResults from "./UseSearchResults";
 import { faBars } from "@fortawesome/free-solid-svg-icons/faBars";
+import useDebounce from "./useDebounce";
+import Spinner from "./Spinner";
 
 const Navbar = () => {
   const inputRef = useRef(null);
   const [searchInput, setSearchInput] = useState("");
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [searchIsOpen, setSearchIsOpen] = useState(false);
+  const debounce = useDebounce(searchInput, 300);
 
-  const { data = [], isLoading, isError } = UseSearchResults(searchInput);
+  const { data = [], isLoading, isError } = UseSearchResults(debounce);
 
   // Use useMemo to memoize filteredData.
   // It will only re-calculate if searchInput or data changes.
@@ -51,7 +54,7 @@ const Navbar = () => {
         <NavButton to={"/subscriptions"} label={"Subscriptions"} />
       </nav>
       <div className="relative flex-wrap items-center justify-end hidden gap-5 md:flex">
-        {isLoading && <p>Loading...</p>}
+        {isLoading && <Spinner />}
         {isError && <p>Something went wrong! </p>}
         <input
           ref={inputRef}
@@ -145,6 +148,7 @@ const Navbar = () => {
         onClick={() => setMenuIsOpen(false)} // Close menu when overlay is clicked
       ></div>
       <div
+        onClick={() => setMenuIsOpen(false)}
         className={`z-20 fixed top-15 rounded-2xl right-0 transition-transform duration-300 transform ${
           menuIsOpen ? "translate-x-0" : "translate-x-full"
         } flex flex-col bg-black-06`}

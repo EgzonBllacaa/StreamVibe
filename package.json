@@ -18,6 +18,8 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.2",
+    "react-spinner": "^0.2.7",
+    "react-spinners": "^0.17.0",
     "tailwindcss": "^4.1.8",
     "validator": "^13.15.15"
   },

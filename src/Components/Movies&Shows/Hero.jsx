@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Spinner from "../Spinner";
 
 const Hero = () => {
   const API_KEY = import.meta.env.VITE_API_KEY;
@@ -19,7 +20,7 @@ const Hero = () => {
     },
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner />;
   if (isError) return <p>{error.message}</p>;
   const movies = data?.results || [];
   const slicedMovies = movies.slice(0, 3);

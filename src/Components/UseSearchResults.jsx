@@ -12,6 +12,7 @@ const UseSearchResults = (searchText) => {
         )}&language=en-US&page=1&include_adult=false`
       );
       const data = await response.json();
+
       return data.results;
     },
     enabled: !!searchText,

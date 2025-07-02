@@ -3,6 +3,7 @@ import PaginatedGrid from "../PaginatedGrid";
 import { useQuery } from "@tanstack/react-query";
 import Card from "../Card";
 import { Link } from "react-router-dom";
+import Spinner from "../Spinner";
 
 const newReleasesFetch = async (mediaType, apiKey) => {
   const endpoint = mediaType === "movie" ? "now_playing" : "on_the_air";
@@ -24,7 +25,7 @@ const NewReleasesList = ({ mediaType = "movie" }) => {
 
   console.log(data);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner />;
   if (isError) return <p>{error.message}</p>;
   return (
     <div>

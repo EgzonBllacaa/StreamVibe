@@ -3,6 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import PaginatedGrid from "./PaginatedGrid";
 import Card from "./Card";
 import MovieDetails from "../Pages/MovieDetails";
+import Spinner from "./Spinner";
 
 const fetchMoviesByGenre = async (genreId, mediaType) => {
   // Ensure genreId is passed here
@@ -32,12 +33,12 @@ const GenreLists = () => {
     staleTime: 1000 * 60 * 5, // optional: 5 min cache
   });
 
-  if (isLoading) return <p className="text-center">Loading...</p>;
+  if (isLoading) return <Spinner />;
   if (isError) return <p className="text-center">Something went wrong.</p>;
 
   console.log(items); // Log 'items'
   return (
-    <div>
+    <div className="pb-15">
       <PaginatedGrid
         title={`Genre: ${state.genreName || "N/A"} (${
           mediaType === "movie" ? "Movies" : "TV Shows"

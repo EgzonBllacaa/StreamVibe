@@ -3,6 +3,7 @@ import React from "react";
 import PaginatedGrid from "../PaginatedGrid";
 import PopularByCategory from "./PopularByCategory";
 import { useQuery } from "@tanstack/react-query";
+import Spinner from "../Spinner";
 
 const fetchTVGenres = async (apiKey) => {
   const res = await fetch(
@@ -35,7 +36,7 @@ const PopularTVShowsList = () => {
   });
 
   if (!apiKey) return <p className="text-red-500">API key not found.</p>;
-  if (isLoading) return <p>Loading genres...</p>;
+  if (isLoading) return <Spinner />;
   if (isError) return <p>Error: {error.message}</p>;
 
   return (
@@ -50,6 +51,7 @@ const PopularTVShowsList = () => {
           apiKey={apiKey}
           fetchFunction={fetchTVShowsByGenre}
           itemsPerGenre={4}
+          mediaType={"tv"}
         />
       )}
     </PaginatedGrid>

@@ -3,12 +3,14 @@ import { useQueries } from "@tanstack/react-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import Spinner from "../Spinner";
 
 const PopularByCategory = ({
   visibleGenres = [],
   apiKey,
   fetchFunction,
   itemsPerGenre = 4,
+  mediaType,
 }) => {
   const movieQueries = useQueries({
     queries: visibleGenres.map((genre) => ({
@@ -23,7 +25,7 @@ const PopularByCategory = ({
   const isLoading = movieQueries.some((q) => q.isLoading);
   const isError = movieQueries.some((q) => q.isError);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner />;
   if (isError) return <p>Something went wrong while fetching movies.</p>;
 
   return (
@@ -33,7 +35,7 @@ const PopularByCategory = ({
 
         return (
           <Link
-            to={`/movie/genre/${genre.id}`}
+            to={`/genre/${mediaType}/${genre.id}`}
             state={{ genreName: genre.name }}
           >
             <div

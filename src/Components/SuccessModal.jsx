@@ -2,19 +2,13 @@ import { faRemove } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect } from "react";
 
-const SuccessModal = ({ message, isOpen, autoClose = 3000, onClose }) => {
+const SuccessModal = ({ message, isOpen, autoClose = 2000, onClose }) => {
   useEffect(() => {
-    let audio;
     if (isOpen) {
-      audio = new Audio("/soundFXTwitch.mp3");
-      audio.play();
-
       const timer = setTimeout(() => {
         onClose();
       }, autoClose);
       return () => {
-        audio.pause();
-        audio.currentTime = 0;
         clearTimeout(timer);
       };
     }

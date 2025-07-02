@@ -4,8 +4,9 @@ import { useParams } from "react-router-dom";
 import StarRating from "../StarRating";
 import MovieDetailCard from "../MovieDetailCard";
 import ButtonCta from "../ButtonCta";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import Spinner from "../Spinner";
 
 const fetchMediaDetails = async (id, mediaType, apiKey) => {
   const response = await fetch(
@@ -25,7 +26,7 @@ const DetailsComponent = ({ mediaType }) => {
     queryFn: () => fetchMediaDetails(id, mediaType, apiKey),
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner />;
   if (error) return <p>Error loading details.</p>;
   console.log(data);
   const toggleOpenIds = (seasonId) => {
@@ -36,7 +37,7 @@ const DetailsComponent = ({ mediaType }) => {
     );
   };
   return (
-    <div className="flex flex-col items-center">
+    <div className="min-h-[1200px] flex flex-col items-center">
       <div className="flex flex-col items-center">
         <img
           src={`https://image.tmdb.org/t/p/w500${
@@ -84,15 +85,22 @@ const DetailsComponent = ({ mediaType }) => {
                               <h2> {season.name}</h2>
                               <span>Episodes {season.episode_count}</span>
                             </div>
-                            <FontAwesomeIcon
-                              className="bg-black-08 py-3.5 px-4 rounded-4xl  "
-                              icon={faArrowDown}
-                            />
+                            {openIds.includes(season.id) ? (
+                              <FontAwesomeIcon
+                                className="bg-red-45 py-3.5 px-4 rounded-4xl  "
+                                icon={faArrowUp}
+                              />
+                            ) : (
+                              <FontAwesomeIcon
+                                className="bg-black-08 py-3.5 px-4 rounded-4xl  "
+                                icon={faArrowDown}
+                              />
+                            )}
                           </div>
                           {openIds.includes(season.id) && (
                             <div className="p-4 px-10 bg-black-06">
                               <h1 className="text-sm text-gray-400">
-                                {season.air_date.split("-").join(" / ")}
+                                {season.air_date?.split("-").join(" / ")}
                               </h1>
                               <h2 className="mb-4 text-gray-400">
                                 Overview of the season:
