@@ -41,3 +41,7 @@
   height: 1px;
   width: 100%;
 }
+.scrollbar-hide {
+  scrollbar-width: thin;
+  scrollbar-color: #ef4444;
+}

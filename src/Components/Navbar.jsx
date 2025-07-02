@@ -32,7 +32,7 @@ const Navbar = () => {
 
   return (
     <header className="flex items-center justify-between xl:grid-cols-3 lg:flex-wrap lg:justify-between lg:flex py-7">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 cursor-pointer">
         <img
           src={streamVibeLogo}
           alt=""

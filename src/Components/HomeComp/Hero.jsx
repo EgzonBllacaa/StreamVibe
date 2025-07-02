@@ -1,18 +1,17 @@
-import React from "react";
 import subContainer from "../../assets/subContainer.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import ButtonCta from "../ButtonCta";
 const Hero = () => {
   return (
-    <div className="flex flex-col items-center mb-50">
+    <div className="flex flex-col items-center mb-24 xl:mb-50 lg:mb-36">
       <img src={subContainer} alt="" />
       <div className="flex flex-col items-center gap-12">
         <div className="flex flex-col items-center gap-4">
-          <h1 className="text-6xl font-bold text-absolute-white">
+          <h1 className="text-2xl font-bold lg:text-5xl xl:text-6xl text-absolute-white">
             The Best Streaming Experience
           </h1>
-          <p className="text-center text-gray-60 w-5xl">
+          <p className="w-full text-sm text-center md:text-base xl:text-lg text-gray-60 xl:w-5xl lg:w-4xl ">
             StreamVibe is the best streaming experience for watching your
             favorite movies and shows on demand, anytime, anywhere. With
             StreamVibe, you can enjoy a wide variety of content, including the

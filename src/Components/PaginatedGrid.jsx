@@ -19,7 +19,7 @@ const PaginatedGrid = ({
     : [];
 
   const renderedItems = renderItem ? (
-    <div className="flex items-center justify-center gap-7">
+    <div className="flex items-center justify-start  md:justify-center overflow-x-auto md:overflow-x-hidden scrollbar-hide scroll-smooth .scrollbar-hide   gap-7 ">
       {visibleGenres?.map((item) => renderItem(item))}
     </div>
   ) : null;
