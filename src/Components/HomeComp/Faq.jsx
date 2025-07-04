@@ -60,7 +60,7 @@ const Faq = () => {
   const [openId, setIsOpenId] = useState(null);
   const toggle = (id) => setIsOpenId(openId === id ? null : id);
   return (
-    <div className="flex flex-col gap-20">
+    <div className="flex w-full flex-col gap-20">
       <div className="flex items-center justify-between">
         <TitleHeader
           title={"Frequently Asked Questions"}
@@ -70,8 +70,8 @@ const Faq = () => {
         />
         <ButtonCta>Ask A Question</ButtonCta>
       </div>
-      <div className="flex items-center gap-20 ">
-        <div className="w-1/2">
+      <div className="flex flex-wrap sm:flex-nowrap items-center md:gap-20 ">
+        <div className="w-full sm:w-1/2">
           {leftColumn.map((item) => (
             <FaqItem
               key={item.id}
@@ -81,7 +81,7 @@ const Faq = () => {
             />
           ))}
         </div>
-        <div className="w-1/2">
+        <div className="w-full sm:w-1/2">
           {rightColumn.map((item) => (
             <FaqItem
               key={item.id}

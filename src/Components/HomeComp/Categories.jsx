@@ -36,7 +36,7 @@ const Categories = ({ visibleGenres = [], mediaType = "movie" }) => {
   if (isError) return <p>Something went wrong.</p>;
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-7 ">
+    <div className="flex overflow-x-auto  md:flex-wrap items-center md:justify-center justify-start gap-7 ">
       {mediaQueries.map((q, index) => {
         const genre = visibleGenres[index];
         return (
@@ -46,7 +46,7 @@ const Categories = ({ visibleGenres = [], mediaType = "movie" }) => {
           >
             <div
               key={genre.id}
-              className="flex flex-col gap-2 border border-black-12 p-7 bg-black-10 rounded-xl"
+              className="flex flex-col xl:w-[295px] md:w-[240px] w-[178px]  gap-2 border border-black-12 md:p-7 p-5  bg-black-10 rounded-xl"
             >
               <div className="grid grid-cols-2 gap-2.5">
                 {q.data.map((item) => (
@@ -54,7 +54,7 @@ const Categories = ({ visibleGenres = [], mediaType = "movie" }) => {
                     key={item.id}
                     src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                     alt={item.title || item.name}
-                    className="max-w-2 min-w-25"
+                    className="max-w-16 min-w-16  md:min-w-25 md:max-w-25"
                   />
                 ))}
               </div>

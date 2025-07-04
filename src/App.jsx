@@ -11,8 +11,8 @@ import GenreLists from "./Components/GenreLists";
 const App = () => {
   return (
     <Router>
-      <div className="max-w-[1600px] mx-auto">
-        <Navbar />
+      <Navbar />
+      <div className="max-w-[1600px] lg:px-20 px-4 mx-auto mt-40">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/movies&shows" element={<MovieTvShows />} />

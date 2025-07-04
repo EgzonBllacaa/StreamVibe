@@ -3,7 +3,7 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 const Pagination = ({ page, setPage, totalPages, ALL_GENRES, endIndex }) => {
   return (
     <>
-      <div className="flex gap-4 p-4 rounded-xl bg-black-06 border-1 border-black-12">
+      <div className="hidden sm:flex gap-4 p-4 rounded-xl bg-black-06 border-1 border-black-12">
         <button>
           <FontAwesomeIcon
             disabled={page === 0}

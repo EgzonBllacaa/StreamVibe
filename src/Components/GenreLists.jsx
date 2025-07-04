@@ -4,6 +4,7 @@ import PaginatedGrid from "./PaginatedGrid";
 import Card from "./Card";
 import MovieDetails from "../Pages/MovieDetails";
 import Spinner from "./Spinner";
+import ScrollToTop from "./ScrollToTop";
 
 const fetchMoviesByGenre = async (genreId, mediaType) => {
   // Ensure genreId is passed here
@@ -39,6 +40,7 @@ const GenreLists = () => {
   console.log(items); // Log 'items'
   return (
     <div className="pb-15">
+      <ScrollToTop />
       <PaginatedGrid
         title={`Genre: ${state.genreName || "N/A"} (${
           mediaType === "movie" ? "Movies" : "TV Shows"

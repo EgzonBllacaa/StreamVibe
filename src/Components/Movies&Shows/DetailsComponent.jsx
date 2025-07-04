@@ -37,7 +37,7 @@ const DetailsComponent = ({ mediaType }) => {
     );
   };
   return (
-    <div className="min-h-[1200px] flex flex-col items-center">
+    <div className="min-h-[1200px]flex flex-col items-center">
       <div className="flex flex-col items-center">
         <img
           src={`https://image.tmdb.org/t/p/w500${

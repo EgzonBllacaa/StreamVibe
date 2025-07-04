@@ -39,7 +39,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="">
+    <div>
       <div className="flex flex-col items-center gap-8 ">
         <img
           src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}

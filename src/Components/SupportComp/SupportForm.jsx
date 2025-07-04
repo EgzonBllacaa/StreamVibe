@@ -149,10 +149,15 @@ const SupportForm = () => {
         />
       </div>
       {error && <p>{error}</p>}
-      <div className="transition-opacity duration-200 ease-in-out opacity-100">
+      <div
+        onClick={() => setSuccess(false)}
+        className="transition-opacity duration-200 ease-in-out opacity-100"
+      >
         <SuccessModal
-          isOpen={success}
-          message={"Successfully submitted the form"}
+          Success={success}
+          message={
+            "Thanks for reaching out! Our support team has received your message and will reply within 24–48 hours."
+          }
           onClose={() => setSuccess(false)}
         />
       </div>

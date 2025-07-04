@@ -8,7 +8,7 @@ const queryClient = new QueryClient();
 createRoot(document.getElementById("root")).render(
   // <StrictMode>
   <QueryClientProvider client={queryClient}>
-    <div className="overflow-x-hidden  bg-black-08 text-absolute-white">
+    <div className="overflow-x-hidden   bg-black-08 text-absolute-white">
       <App />
     </div>
   </QueryClientProvider>
