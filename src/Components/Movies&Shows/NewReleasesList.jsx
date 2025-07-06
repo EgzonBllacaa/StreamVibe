@@ -2,7 +2,6 @@ import React from "react";
 import PaginatedGrid from "../PaginatedGrid";
 import { useQuery } from "@tanstack/react-query";
 import Card from "../Card";
-import { Link } from "react-router-dom";
 import Spinner from "../Spinner";
 
 const newReleasesFetch = async (mediaType, apiKey) => {
@@ -12,7 +11,6 @@ const newReleasesFetch = async (mediaType, apiKey) => {
   );
 
   const data = await response.json();
-
   return data.results;
 };
 

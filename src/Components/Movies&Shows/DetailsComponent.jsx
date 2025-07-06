@@ -4,9 +4,14 @@ import { useParams } from "react-router-dom";
 import StarRating from "../StarRating";
 import MovieDetailCard from "../MovieDetailCard";
 import ButtonCta from "../ButtonCta";
-import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowDown,
+  faArrowUp,
+  faHeart,
+} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Spinner from "../Spinner";
+import useWatchlistStore from "../../store/watchlistStore";
 
 const fetchMediaDetails = async (id, mediaType, apiKey) => {
   const response = await fetch(
@@ -25,9 +30,15 @@ const DetailsComponent = ({ mediaType }) => {
     queryKey: [mediaType, id],
     queryFn: () => fetchMediaDetails(id, mediaType, apiKey),
   });
+  const addToWatchlist = useWatchlistStore((state) => state.addToWatchlist);
+  const removeFromWatchlist = useWatchlistStore(
+    (state) => state.removeFromWatchlist
+  );
+  const watchlist = useWatchlistStore((state) => state.watchlist);
 
   if (isLoading) return <Spinner />;
   if (error) return <p>Error loading details.</p>;
+  const isInList = watchlist.some((movie) => movie.id === data.id);
   console.log(data);
   const toggleOpenIds = (seasonId) => {
     setOpenIds((prev) =>
@@ -37,7 +48,7 @@ const DetailsComponent = ({ mediaType }) => {
     );
   };
   return (
-    <div className="min-h-[1200px]flex flex-col items-center">
+    <div className="min-h-[1200px] flex flex-col items-center">
       <div className="flex flex-col items-center">
         <img
           src={`https://image.tmdb.org/t/p/w500${
@@ -46,6 +57,23 @@ const DetailsComponent = ({ mediaType }) => {
           alt={data.title || data.name}
           className="mb-6 rounded-4xl w-fit"
         />
+        {console.log(data)}
+        {isInList ? (
+          <button
+            className="cursor-pointer"
+            onClick={() => removeFromWatchlist(data.id)}
+          >
+            <FontAwesomeIcon className="text-red-600" icon={faHeart} />
+          </button>
+        ) : (
+          <button
+            className="cursor-pointer"
+            onClick={() => addToWatchlist(data)}
+          >
+            <FontAwesomeIcon icon={faHeart} />
+          </button>
+        )}
+
         {data.number_of_episodes || data.number_of_seasons ? (
           <div className="flex flex-col items-center gap-5">
             <h1 className="text-4xl font-bold">{data.title || data.name}</h1>
@@ -59,7 +87,7 @@ const DetailsComponent = ({ mediaType }) => {
         )}
       </div>
       <div className="flex flex-col w-full gap-5 py-10">
-        <div className="flex items-start gap-4">
+        <div className="flex flex-wrap items-start gap-4">
           <div className="flex flex-col gap-10">
             <div className="flex flex-col flex-1 gap-3 p-12 rounded bg-black-10">
               <MovieDetailCard
@@ -125,7 +153,7 @@ const DetailsComponent = ({ mediaType }) => {
               </div>
             )}
           </div>
-          <div className="flex flex-col flex-wrap gap-3 p-12 rounded max-w-5/12 bg-black-10">
+          <div className="flex flex-col flex-wrap gap-3 p-12 rounded md:max-w-5/12 bg-black-10">
             <div className="flex flex-col flex-wrap gap-5">
               <div className="flex flex-wrap gap-10">
                 <div className="flex flex-col gap-2">
@@ -138,8 +166,7 @@ const DetailsComponent = ({ mediaType }) => {
                     }
                   />
                 </div>
-
-                <div className="flex flex-col gap-2">
+                <div className="flex  flex-col gap-2">
                   <MovieDetailCard
                     data={data}
                     title={"Budget:"}
@@ -175,7 +202,7 @@ const DetailsComponent = ({ mediaType }) => {
                     />
                   </div>
                 )}
-                <div className="flex gap-10 px-4 py-2 border-2 border-black-15 rounded-xl">
+                <div className="flex flex-wrap gap-10 px-4 py-2 border-2 border-black-15 rounded-xl">
                   <MovieDetailCard
                     data={data}
                     title={"Genres:"}
@@ -222,7 +249,7 @@ const DetailsComponent = ({ mediaType }) => {
           </div>
         </div>
         <div className="flex flex-col w-full p-12 rounded bg-black-10">
-          <div className="flex items-end justify-center gap-20">
+          <div className="flex items-end justify-start overflow-x-auto md:justify-center gap-20">
             {data.production_companies.map((companies) => (
               <div
                 key={companies.id}

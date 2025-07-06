@@ -36,7 +36,7 @@ const Categories = ({ visibleGenres = [], mediaType = "movie" }) => {
   if (isError) return <p>Something went wrong.</p>;
 
   return (
-    <div className="flex overflow-x-auto  md:flex-wrap items-center md:justify-center justify-start gap-7 ">
+    <div className="flex overflow-x-auto  md:flex-wrap items-start md:justify-center justify-start gap-7 ">
       {mediaQueries.map((q, index) => {
         const genre = visibleGenres[index];
         return (
@@ -58,8 +58,10 @@ const Categories = ({ visibleGenres = [], mediaType = "movie" }) => {
                   />
                 ))}
               </div>
-              <div className="flex items-center justify-between">
-                <h4 className="text-lg font-medium">{genre.name}</h4>
+              <div className="flex items-center flex-wrap justify-between">
+                <h4 className="md:text-lg text-base font-medium">
+                  {genre.name}
+                </h4>
                 <FontAwesomeIcon
                   icon={faArrowRight}
                   className="cursor-pointer"

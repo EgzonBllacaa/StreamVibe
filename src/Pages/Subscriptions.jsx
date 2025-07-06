@@ -1,4 +1,3 @@
-import React from "react";
 import PlanPayment from "../Components/HomeComp/PlanPayment";
 import FreeTrial from "../Components/HomeComp/FreeTrial";
 import ComparePlans from "../Components/SubscriptionsComp/ComparePlans";

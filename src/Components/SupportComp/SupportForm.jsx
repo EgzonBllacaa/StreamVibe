@@ -68,7 +68,7 @@ const SupportForm = () => {
       className="flex flex-col items-end w-full gap-12 p-12 rounded-xl bg-black-06 border-1 border-black-15"
       onSubmit={handleSubmit}
     >
-      <div className="flex w-full gap-12 ">
+      <div className="flex flex-col md:flex-row w-full gap-12 ">
         <div className="w-full text-lg">
           <label
             className="block font-semibold text-absolute-white"
@@ -84,7 +84,7 @@ const SupportForm = () => {
             type="text"
           />
         </div>
-        <div className="w-full">
+        <div className="w-full text-lg">
           <label
             className="block font-semibold text-absolute-white"
             htmlFor={lastName}
@@ -100,7 +100,7 @@ const SupportForm = () => {
           />
         </div>
       </div>
-      <div className="flex w-full gap-12">
+      <div className="flex w-full flex-col md:flex-row gap-12">
         <div className="w-full">
           <label
             className="block font-semibold text-absolute-white"

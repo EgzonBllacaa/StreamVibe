@@ -44,11 +44,12 @@ const Hero = () => {
         <img
           src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
           alt=""
+          className="max-w-96 w-full"
         />
         <div className="flex flex-col gap-7.5 items-center">
-          <div className="flex flex-col items-center gap-3 px-50">
+          <div className="flex flex-col items-center px-0 gap-3 sm:px-50">
             <h1 className="text-3xl font-bold">{movie?.title}</h1>
-            <p className="font-medium text-center text text-gray-60">
+            <p className="font-medium text-balance text-center text text-gray-60">
               {movie?.overview.slice(0, 240)}...
             </p>
           </div>

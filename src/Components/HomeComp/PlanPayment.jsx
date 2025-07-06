@@ -38,7 +38,7 @@ const PlanPayment = () => {
   const [category, setCategory] = useState("Monthly");
   return (
     <div className="flex flex-col gap-20">
-      <div className="flex justify-between">
+      <div className="flex flex-wrap lg:flex-nowrap gap-5  justify-between">
         <TitleHeader
           title={"Choose the plan that's right for you"}
           description={
@@ -54,11 +54,11 @@ const PlanPayment = () => {
           priceYearly={PLANS.priceYearly}
         />
       </div>
-      <div className="flex gap-7">
+      <div className="flex flex-wrap lg:flex-nowrap items-center gap-7">
         {PLANS.map((plan, i) => (
           <div
             key={i}
-            className="flex flex-col justify-center gap-12 p-12 bg-black-10 rounded-xl"
+            className="flex flex-col w-full justify-center gap-12 p-12 bg-black-10 rounded-xl"
           >
             <div className="flex flex-col gap-4">
               <h6 className="text-2xl font-bold text-absolute-white">
@@ -77,9 +77,11 @@ const PlanPayment = () => {
                 {plan.type}
               </span>
             </div>
-            <div className="flex gap-5">
-              <Button>{plan.options[0]}</Button>
-              <ButtonCta>{plan.options[1]}</ButtonCta>
+            <div className="flex gap-5 flex-wrap w-full justify-center ">
+              <div>
+                <Button>{plan.options[0]}</Button>
+              </div>
+              <ButtonCta className="bg-green-200">{plan.options[1]}</ButtonCta>
             </div>
           </div>
         ))}

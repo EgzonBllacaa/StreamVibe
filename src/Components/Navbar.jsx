@@ -2,12 +2,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faBell, faClose } from "@fortawesome/free-solid-svg-icons";
 import streamVibeLogo from "../assets/streamvibelogo.png";
 import NavButton from "./NavButton";
-import React, { useRef, useState, useMemo, useEffect } from "react"; // Import useMemo
+import { useRef, useState, useMemo, useEffect } from "react"; // Import useMemo
 import { Link } from "react-router-dom";
 import UseSearchResults from "./UseSearchResults";
 import { faBars } from "@fortawesome/free-solid-svg-icons/faBars";
 import useDebounce from "./useDebounce";
 import Spinner from "./Spinner";
+import WatchlistPage from "../Pages/WatchlistPage";
+import useWatchlistStore from "../store/watchlistStore";
 
 const Navbar = () => {
   const inputRef = useRef(null);
@@ -17,7 +19,9 @@ const Navbar = () => {
   const [searchIsOpen, setSearchIsOpen] = useState(false);
   const lastScroll = useRef(0);
   const debounce = useDebounce(searchInput, 300);
+  const { watchlist } = useWatchlistStore();
 
+  const totalItems = watchlist.length;
   const { data = [], isLoading, isError } = UseSearchResults(debounce);
 
   const filteredData = useMemo(() => {
@@ -29,23 +33,21 @@ const Navbar = () => {
       return name.toLowerCase().includes(searchInput.toLowerCase());
     });
   }, [searchInput, data]);
+
   useEffect(() => {
     const handleScroll = () => {
       let currentScroll = window.scrollY;
-      // Change > 100 to >= 100
       if (currentScroll > lastScroll.current && currentScroll >= 100) {
-        // <-- HERE IS THE CHANGE
         setIsActive(false);
-        console.log("handleScroll: Scrolling down, isActive set to false");
       } else if (currentScroll < lastScroll.current) {
         setIsActive(true);
-        console.log("handleScroll: Scrolling up, isActive set to true");
       }
       lastScroll.current = currentScroll;
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <header
       className={`fixed flex items-center w-full lg:h-fit h-4 z-20 transition-transform duration-700 ease-in-out px-4  lg:px-16 xl:px-36   pb-10 justify-between transform ${
@@ -155,11 +157,17 @@ const Navbar = () => {
               ))}
             </div>
           )}
-
-        <FontAwesomeIcon
-          icon={faBell}
-          className="xl:min-h-7 xl:min-w-7 lg:min-w-6 lg:min-h-6 text-absolute-white"
-        />
+        <Link
+          className="text-red-600 font-bold flex gap-2 items-center"
+          to={"/watchlist"}
+          element={<WatchlistPage />}
+        >
+          <FontAwesomeIcon
+            icon={faBell}
+            className="xl:min-h-7 xl:min-w-7 lg:min-w-6 lg:min-h-6 bg-transparent text-absolute-white"
+          />
+          {totalItems}
+        </Link>
       </div>
       {/* Overlay */}
       <div

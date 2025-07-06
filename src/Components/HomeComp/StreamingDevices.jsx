@@ -55,7 +55,7 @@ const DEVICES = [
 const StreamingDevices = () => {
   return (
     <div className="flex flex-col gap-20">
-      <div className="w-5/6">
+      <div className="w-5/6 text-center sm:text-left">
         <TitleHeader
           title={"We Provide you streaming experience across various devices."}
           description={
@@ -67,7 +67,7 @@ const StreamingDevices = () => {
         {DEVICES.map((device) => (
           <div
             key={device.id}
-            className="flex flex-col p-12 min-w-3/10  max-w-[450px] border-1 border-black-15 rounded-xl gap-7 "
+            className="flex flex-col p-12 min-w-3/12  max-w-[450px]  border-1 border-black-15 rounded-xl gap-7 "
           >
             <div className="flex items-center gap-4">
               <img

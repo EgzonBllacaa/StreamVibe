@@ -10,7 +10,7 @@ const PopularByCategory = ({
   apiKey,
   fetchFunction,
   itemsPerGenre = 4,
-  mediaType,
+  mediaType = "movie",
 }) => {
   const movieQueries = useQueries({
     queries: visibleGenres.map((genre) => ({
@@ -48,7 +48,7 @@ const PopularByCategory = ({
                     key={movie.id}
                     src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                     alt={movie.title}
-                    className="object-cover rounded max-w-34 "
+                    className="object-cover rounded  md:max-w-34 "
                   />
                 ))}
               </div>

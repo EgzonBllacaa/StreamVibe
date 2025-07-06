@@ -61,7 +61,7 @@ const Faq = () => {
   const toggle = (id) => setIsOpenId(openId === id ? null : id);
   return (
     <div className="flex w-full flex-col gap-20">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap gap-4 md: gap-0 items-center justify-between">
         <TitleHeader
           title={"Frequently Asked Questions"}
           description={

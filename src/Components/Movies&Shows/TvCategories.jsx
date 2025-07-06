@@ -9,7 +9,7 @@ import MustWatchList from "./MustWatchList";
 const TvCategories = () => {
   return (
     <div className="relative flex flex-col px-10 py-12 border-2 border-black-15 gap-36">
-      <span className="absolute -top-8">
+      <span className="hidden sm:absolute sm:-top-8">
         <ButtonCta children={"Tv Shows"} />
       </span>
       <OurTVGenresList />

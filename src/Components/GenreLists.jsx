@@ -44,7 +44,7 @@ const GenreLists = () => {
       <PaginatedGrid
         title={`Genre: ${state.genreName || "N/A"} (${
           mediaType === "movie" ? "Movies" : "TV Shows"
-        })`} // Dynamic title based on mediaType
+        })`}
         itemsPerPage={5}
         items={items}
         renderItem={(
