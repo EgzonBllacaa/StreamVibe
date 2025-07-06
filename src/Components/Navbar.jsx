@@ -180,6 +180,7 @@ const Navbar = () => {
         onClick={() => setMenuIsOpen(false)} // Close menu when overlay is clicked
       ></div>
       {/* Mobile Navbar */}
+
       <div
         onClick={() => setMenuIsOpen(false)}
         className={`z-20 fixed top-15 rounded-2xl right-0 transition-transform duration-300 transform ${
@@ -195,6 +196,17 @@ const Navbar = () => {
         </div>
         <NavButton to={"/support"} label={"Support"} />
         <NavButton to={"/subscriptions"} label={"Subscriptions"} />
+        <Link
+          className="text-red-600 justify-center font-bold flex gap-2 items-center"
+          to={"/watchlist"}
+          element={<WatchlistPage />}
+        >
+          <FontAwesomeIcon
+            icon={faBell}
+            className="xl:min-h-7 xl:min-w-7 lg:min-w-6 lg:min-h-6 bg-transparent text-absolute-white"
+          />
+          {totalItems}
+        </Link>
       </div>
       {/* Hamburger Menu */}
       <div

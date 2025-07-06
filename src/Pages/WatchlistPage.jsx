@@ -26,19 +26,22 @@ const WatchlistPage = () => {
     <>
       <ScrollToTop />
       <div className="flex flex-col ">
-        <div className="flex items-center gap-10 mb-10">
+        <div className="flex flex-wrap items-center gap-10 mb-10">
           <h1 className="text-4xl font-semibold">Watchlist</h1>
-          <div className="flex gap-4 items-center">
+          <div
+            className="flex gap-4 
+           items-center"
+          >
             {["all", "movie", "tv"].map((type) => (
               <button
                 className={`py-2 px-8 cursor-pointer  ${
                   filter === type
                     ? "bg-red-900  rounded-xl "
-                    : "border border-black-15 rounded-xl"
+                    : "border border-black-15 rounded-xl hover:bg-red-900/85"
                 }`}
                 onClick={() => setFilter(type)}
               >
-                {type}
+                {type.charAt(0).toUpperCase() + type.slice(1)}
               </button>
             ))}
           </div>
